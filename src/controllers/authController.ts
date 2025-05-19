@@ -20,7 +20,7 @@ export const register = async (req: Request, res: Response): Promise<Response> =
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const defaultPhotoPath = path.join(__dirname, "public/assets/default-avatar.png");
+    const defaultPhotoPath = path.join(__dirname, "../../public/assets/default-avatar.png");
     const photoBuffer = fs.readFileSync(defaultPhotoPath);
 
     const newUser = new User({
