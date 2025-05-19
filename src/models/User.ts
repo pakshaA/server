@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
         type: Number,
     },
     photo: {
-        type: String,
+        data: Buffer,
+        contentType: String,
     },
     email: {
         type: String,
