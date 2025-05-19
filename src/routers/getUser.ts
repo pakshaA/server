@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 
 const getUserRoutes = express.Router();
 
-getUserRoutes.post("/getUser", (req: Request, res: Response, next: NextFunction) => {
+getUserRoutes.get("/getUser", (req: Request, res: Response, next: NextFunction) => {
     getUser(req, res).catch(next);
 });
 
