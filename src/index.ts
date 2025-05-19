@@ -17,7 +17,7 @@ app.use(cookieParser());
 connectDB();
 
 app.use(cors({
-    origin: "https://findlove-ochre.vercel.app/",
+    origin: "https://findlove-ochre.vercel.app",
     credentials: true 
 }));
 
