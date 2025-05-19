@@ -6,7 +6,7 @@ import loginRoutes from "./routers/login";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import meRoutes from "./routers/me";
-
+import logoutRoutes from "./routers/logout";
 
 dotenv.config();
 
@@ -25,6 +25,7 @@ app.use(cors({
 app.use("/api", authRoutes);
 app.use("/api", loginRoutes);
 app.use("/api", meRoutes);
+app.use("/api", logoutRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
