@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import User from "../models/User";
 import path from "path";
 import fs from "fs";
+import mime from "mime";
 
 export const register = async (req: Request, res: Response): Promise<Response> => {
   try {
@@ -20,8 +21,9 @@ export const register = async (req: Request, res: Response): Promise<Response> =
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const defaultPhotoPath = path.resolve(__dirname, "../public/assets/default-avatar.png");
+    const defaultPhotoPath = path.resolve(__dirname, "../public/assets/default-avatar.webp");
     const photoBuffer = fs.readFileSync(defaultPhotoPath);
+    const contentType = mime.lookup(defaultPhotoPath) || "application/octet-stream"; // определит image/webp
 
     const newUser = new User({
       username,
@@ -29,7 +31,7 @@ export const register = async (req: Request, res: Response): Promise<Response> =
       password: hashedPassword,
       photo: {
         data: photoBuffer,
-        contentType: "image/png",
+        contentType,
       },
       city: "",
       age: null,
