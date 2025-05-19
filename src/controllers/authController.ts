@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import User from "../models/User";
-import path from "path";
-import fs from "fs";
-import { lookup } from 'mime-types';
+// import path from "path";
+// import fs from "fs";
+// import { lookup } from 'mime-types';
 
 export const register = async (req: Request, res: Response): Promise<Response> => {
   try {
@@ -21,18 +21,18 @@ export const register = async (req: Request, res: Response): Promise<Response> =
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const defaultPhotoPath = path.resolve(__dirname, "../public/assets/default-avatar.webp");
-    const photoBuffer = fs.readFileSync(defaultPhotoPath);
-    const contentType = lookup(defaultPhotoPath) || "application/octet-stream";
+    // const defaultPhotoPath = path.resolve(__dirname, "../public/assets/default-avatar.webp");
+    // const photoBuffer = fs.readFileSync(defaultPhotoPath);
+    // const contentType = lookup(defaultPhotoPath) || "application/octet-stream";
 
     const newUser = new User({
       username,
       email,
       password: hashedPassword,
-      photo: {
-        data: photoBuffer,
-        contentType,
-      },
+      // photo: {
+      //   data: photoBuffer,
+      //   contentType,
+      // },
       city: "",
       age: null,
     });
@@ -45,7 +45,7 @@ export const register = async (req: Request, res: Response): Promise<Response> =
         id: newUser._id,
         username: newUser.username,
         email: newUser.email,
-        photo: newUser.photo,
+        // photo: newUser.photo,
         city: newUser.city,
         age: newUser.age,
       },
