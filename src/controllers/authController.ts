@@ -26,7 +26,7 @@ export const register = async (req: Request, res: Response): Promise<Response> =
       password: hashedPassword,
       photo: defaultPhotoPath,
       city: "",
-      age: 18,
+      age: null,
     });
 
     await newUser.save();

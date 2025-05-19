@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import meRoutes from "./routers/me";
 import logoutRoutes from "./routers/logout";
 import path from "path";
+import getUserRoutes from "./routers/getUser";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use("/api", authRoutes);
 app.use("/api", loginRoutes);
 app.use("/api", meRoutes);
 app.use("/api", logoutRoutes);
+app.use("/api", getUserRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
