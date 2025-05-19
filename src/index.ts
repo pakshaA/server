@@ -5,6 +5,7 @@ import authRoutes from "./routers/auth";
 import loginRoutes from "./routers/login";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import meRoutes from "./routers/me";
 
 
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(cors({
 
 app.use("/api", authRoutes);
 app.use("/api", loginRoutes);
+app.use("/api", meRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
