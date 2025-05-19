@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import User from "../models/User";
 
-const JWT_SECRET = process.env.JWT_SECRET || "devsecret";
 
 export const register = async (req: Request, res: Response): Promise<Response> => {
   try {
@@ -21,10 +19,14 @@ export const register = async (req: Request, res: Response): Promise<Response> =
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    const defaultPhotoPath = "/public/assets/default-avatar.png"; 
     const newUser = new User({
       username,
       email,
       password: hashedPassword,
+      photo: defaultPhotoPath,
+      city: "",
+      age: 18,
     });
 
     await newUser.save();
@@ -35,6 +37,9 @@ export const register = async (req: Request, res: Response): Promise<Response> =
         id: newUser._id,
         username: newUser.username,
         email: newUser.email,
+        photo: newUser.photo,
+        city: newUser.city,
+        age: newUser.age,
       },
     });
   } catch (error) {

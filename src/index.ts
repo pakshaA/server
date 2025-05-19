@@ -7,12 +7,13 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import meRoutes from "./routers/me";
 import logoutRoutes from "./routers/logout";
+import path from "path";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 app.use(express.json());
 app.use(cookieParser());
 connectDB();
