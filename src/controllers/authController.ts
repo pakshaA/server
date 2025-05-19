@@ -8,6 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "devsecret";
 export const register = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { username, email, password } = req.body;
+    console.log(req.body);
 
     if (!username || !email || !password) {
       return res.status(400).json({ message: "Заполните все поля" });
