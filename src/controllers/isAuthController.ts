@@ -21,7 +21,8 @@ export const checkMe = async (req: Request, res: Response) => {
             user: {
                 id: user._id,
                 username: user.username,
-                email: user.email
+                email: user.email,
+                photo: user.photo
             }
         });
     } catch (error) {
