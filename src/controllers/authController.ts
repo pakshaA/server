@@ -8,7 +8,6 @@ const JWT_SECRET = process.env.JWT_SECRET || "devsecret";
 export const register = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { username, email, password } = req.body;
-    console.log(req.body);
 
     if (!username || !email || !password) {
       return res.status(400).json({ message: "Заполните все поля" });
@@ -30,27 +29,8 @@ export const register = async (req: Request, res: Response): Promise<Response> =
 
     await newUser.save();
 
-    const token = jwt.sign({ id: newUser._id }, JWT_SECRET, { expiresIn: "7d" });
-    
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-
-    console.log({
-      message: "Пользователь успешно зарегистрирован",
-      token,
-      user: {
-        id: newUser._id,
-        username: newUser.username,
-        email: newUser.email,
-      },
-    })
     return res.status(201).json({
       message: "Пользователь успешно зарегистрирован",
-      token,
       user: {
         id: newUser._id,
         username: newUser.username,

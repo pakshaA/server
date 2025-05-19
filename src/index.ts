@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./database/db";
 import authRoutes from "./routers/auth";
+import loginRoutes from "./routers/login";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -21,6 +22,7 @@ app.use(cors({
 }));
 
 app.use("/api", authRoutes);
+app.use("/api", loginRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
