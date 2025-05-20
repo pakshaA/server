@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 
 const getAllRoutes = express.Router();
 
-getAllRoutes.post("/getAll", (req: Request, res: Response, next: NextFunction) => {
+getAllRoutes.get("/getAll", (req: Request, res: Response, next: NextFunction) => {
     getAllUsers(req, res).catch(next);
 });
 
