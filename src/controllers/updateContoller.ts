@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 export const updateUser = async (req: Request, res: Response) => {
     try {
-        const token = req.cookies?.accessToken;
+        const token = req.cookies.token;
 
         if (!token) {
             return res.status(401).json({ message: "Нет токена авторизации" });
