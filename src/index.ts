@@ -9,6 +9,7 @@ import meRoutes from "./routers/me";
 import logoutRoutes from "./routers/logout";
 import path from "path";
 import getUserRoutes from "./routers/getUser";
+import updateRoutes from "./routers/update";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use("/api", loginRoutes);
 app.use("/api", meRoutes);
 app.use("/api", logoutRoutes);
 app.use("/api", getUserRoutes);
+app.use("/api", updateRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
