@@ -7,8 +7,9 @@ export const getAllUsers = async (_req: Request, res: Response) => {
             gender: { $exists: true, $ne: "" },
             city: { $exists: true, $ne: "" },
             age: { $exists: true, $ne: null },
-            name: { $exists: true, $ne: "" },
-            surname: { $exists: true, $ne: "" }
+            username: { $exists: true, $ne: "" },
+            surname: { $exists: true, $ne: "" },
+            photo: { $exists: true }
         });
 
         res.status(200).json({ users });
