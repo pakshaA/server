@@ -2,10 +2,10 @@ import express from "express";
 import { getAllUsers } from "../controllers/getAllController";
 import { Request, Response, NextFunction } from "express";
 
-const authRoutes = express.Router();
+const getAllRoutes = express.Router();
 
-authRoutes.post("/getAll", (req: Request, res: Response, next: NextFunction) => {
+getAllRoutes.post("/getAll", (req: Request, res: Response, next: NextFunction) => {
     getAllUsers(req, res).catch(next);
 });
 
-export default authRoutes;
+export default getAllRoutes;
